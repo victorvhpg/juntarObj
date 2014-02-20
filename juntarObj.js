@@ -43,14 +43,14 @@
         };
 
 
-        return function(copiaCadeiaPrototype, objNovo) {
-            var i = 2;
+        return function(copiaCadeiaPrototype) {
+            var i = 1;
             copiaCadeiaPrototype = arguments[0];
             if (typeof copiaCadeiaPrototype !== "boolean") {
                 copiaCadeiaPrototype = true;
                 i--;
             }
-            objNovo = objNovo || {};
+            var objNovo = {};
             for (; i < arguments.length; i++) {
                 _copiaRecursiva(copiaCadeiaPrototype, arguments[i], objNovo);
             }
