@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>juntarObj</title>
+	<script src="juntarObj.js"></script>
+	<script>
+		(function(){
+		    "use strict";
+
+		    var a = {
+				prop: "aaaaa",
+				aa: {
+					aaa: 33333,
+					bbb: "aaaa1",
+					ccc: [12, 123, 1]
+				}
+			};
+			var b = {
+				prop_: "bbbbb",
+				bb: {
+					h: 2,
+					hh: [1, 2, 3, 4, 5, 6, 7, 8, {
+						aaaaaaa: 1111,
+						xxxx: a.aa
+					}]
+				},
+				cb: {
+					k: 99999
+				}
+			};
+
+			var c = {
+				cc: {
+					ccc: "oi"
+				}
+			};
+
+			var d = {
+				dd: [9999, 1111, 8888, {
+					ddd: {
+						dddd: "oi de novo"
+					}
+				}, {
+					ddddd: {
+						b: b
+					}
+				}]
+			};
+//=============================================
+
+
+			var obj = juntarObj(a, b, c, d);
+
+
+//=============================================
+			console.dir(obj);
+		//resulta em:
+		 /*{
+			"prop": "aaaaa",
+			"aa": {
+				"aaa": 33333,
+				"bbb": "aaaa1",
+				"ccc": [12, 123, 1]
+			},
+			"prop_": "bbbbb",
+			"bb": {
+				"h": 2,
+				"hh": [1, 2, 3, 4, 5, 6, 7, 8, {
+					"aaaaaaa": 1111,
+					"xxxx": {
+						"aaa": 33333,
+						"bbb": "aaaa1",
+						"ccc": [12, 123, 1]
+					}
+				}]
+			},
+			"cb": {
+				"k": 99999
+			},
+			"cc": {
+				"ccc": "oi"
+			},
+			"dd": [9999, 1111, 8888, {
+				"ddd": {
+					"dddd": "oi de novo"
+				}
+			}, {
+				"ddddd": {
+					"b": {
+						"prop_": "bbbbb",
+						"bb": {
+							"h": 2,
+							"hh": [1, 2, 3, 4, 5, 6, 7, 8, {
+								"aaaaaaa": 1111,
+								"xxxx": {
+									"aaa": 33333,
+									"bbb": "aaaa1",
+									"ccc": [12, 123, 1]
+								}
+							}]
+						},
+						"cb": {
+							"k": 99999
+						}
+					}
+				}
+			}]
+		}*/
+
+
+         
+ //================================
+		var aa = {
+			a: 1
+		};
+
+		var bb = {
+			b: 2
+		};
+
+		bb.aa = aa;
+		aa.bb = bb;
+
+		var obj2 = juntarObj(aa, bb);
+		console.dir(obj2);
+		console.log(obj2.bb.aa.bb.aa.bb.aa.bb.aa.bb.aa.a);//1
+		console.log(obj2.bb.aa.bb === obj2.bb.aa.bb.aa.bb.aa.bb);//true
+//================================================================
+		})();
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
